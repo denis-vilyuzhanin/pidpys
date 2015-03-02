@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("org.pidpys.standalone")
+@ComponentScan("org.pidpys")
 public class StandaloneApplication {
 
 	public static void main(String[] args) throws AWTException {
