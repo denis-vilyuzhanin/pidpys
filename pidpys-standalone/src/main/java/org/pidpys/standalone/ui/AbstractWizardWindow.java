@@ -1,6 +1,7 @@
 package org.pidpys.standalone.ui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
@@ -20,6 +21,7 @@ public abstract class AbstractWizardWindow extends JFrame {
 	private JButton nextButton;
 	private JButton previousButton;
 	private JButton cancelButton;
+	private JPanel bodyPanel;
 	
 	public AbstractWizardWindow() {
 		build();
@@ -48,6 +50,17 @@ public abstract class AbstractWizardWindow extends JFrame {
 		
 		JLabel wizardImage = new JLabel(new ImageIcon(createWizardImage()));
 		windowLayout.add(wizardImage, BorderLayout.WEST);
+		
+		bodyPanel = new JPanel(new CardLayout());
+		windowLayout.add(bodyPanel,BorderLayout.CENTER);
+	}
+	
+	protected void addStep(String stepKey, JPanel stepPanel) {
+		bodyPanel.add(stepPanel, stepKey);
+	}
+	
+	protected void gotoStep(String stepKey) {
+		((CardLayout)bodyPanel.getLayout()).show(bodyPanel, stepKey);
 	}
 	
 	protected Image createWizardImage() {
