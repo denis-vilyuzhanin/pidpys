@@ -45,16 +45,15 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 		private JComboBox keyLengthSelection;
 		
 		public SelectAlgorithmPanel() {
-			super(new MigLayout("wrap 2", "[100!][200!]", "100[][]"));
+			super(new MigLayout("wrap 2", "[120!][]", "150[]40[]"));
 			
 			add(new JLabel("Select algorithm"));
 			algorithmSelection = new JComboBox<String>(new String[]{"RSA", "DSA"});
-			//algorithmSelection.setPreferredSize(new Dimension(200, (int)algorithmSelection.getPreferredSize().getHeight()));
 			add(algorithmSelection, "width 200!");
 			
 			add(new JLabel("Key length"));
 			keyLengthSelection = new JComboBox<String>(new String[]{"2048", "1024", "512", "256", "127"});
-			add(keyLengthSelection);
+			add(keyLengthSelection, "width 200!");
 		}
 	}
 	
