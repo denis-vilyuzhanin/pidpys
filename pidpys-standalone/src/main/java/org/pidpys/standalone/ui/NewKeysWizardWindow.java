@@ -1,16 +1,17 @@
 package org.pidpys.standalone.ui;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
 
 import org.pidpys.standalone.Resources;
 
@@ -44,39 +45,16 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 		private JComboBox keyLengthSelection;
 		
 		public SelectAlgorithmPanel() {
-			super(new GridBagLayout());
-
-			JLabel algorithmLabel = new JLabel("Select algorithm");
-			GridBagConstraints algorithmLabelConstraint = new GridBagConstraints();
-			algorithmLabelConstraint.gridx = 0;
-			algorithmLabelConstraint.gridy = 0;
-			algorithmLabelConstraint.ipadx = 70;
-			super.add(algorithmLabel, algorithmLabelConstraint);
+			super(new MigLayout("wrap 2", "[100!][200!]", "100[][]"));
 			
+			add(new JLabel("Select algorithm"));
 			algorithmSelection = new JComboBox<String>(new String[]{"RSA", "DSA"});
-			GridBagConstraints algorithmSelectionConstraint = new GridBagConstraints();
-			algorithmSelectionConstraint.gridx = 1;
-			algorithmSelectionConstraint.gridy = 0;
-			algorithmSelectionConstraint.fill = GridBagConstraints.HORIZONTAL;
-			algorithmSelectionConstraint.ipadx = 100;
-			super.add(algorithmSelection, algorithmSelectionConstraint);
+			//algorithmSelection.setPreferredSize(new Dimension(200, (int)algorithmSelection.getPreferredSize().getHeight()));
+			add(algorithmSelection, "width 200!");
 			
-			
-			JLabel keyLengthLabel = new JLabel("Key length");
-			GridBagConstraints algorithmLabelContraint = new GridBagConstraints();
-			algorithmLabelContraint.gridx = 0;
-			algorithmLabelContraint.gridy = 1;
-			algorithmLabelContraint.ipadx = 70;
-			algorithmLabelContraint.ipady = 30;
-			super.add(keyLengthLabel, algorithmLabelContraint);
-			
+			add(new JLabel("Key length"));
 			keyLengthSelection = new JComboBox<String>(new String[]{"2048", "1024", "512", "256", "127"});
-			GridBagConstraints keyLengthSelectionConstraint = new GridBagConstraints();
-			keyLengthSelectionConstraint.gridx = 1;
-			keyLengthSelectionConstraint.gridy = 1;
-			keyLengthSelectionConstraint.fill = GridBagConstraints.HORIZONTAL;
-			keyLengthSelectionConstraint.ipadx = 100;
-			super.add(keyLengthSelection, keyLengthSelectionConstraint);
+			add(keyLengthSelection);
 		}
 	}
 	
