@@ -57,14 +57,14 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 		private JTextArea commentsArea;
 		
 		public KeyInfoStepPanel() {
-			super(new MigLayout("wrap 1", "[300!]", "70[][]10[][]"));
+			super(new MigLayout("wrap 1", "[]", "(30%)[][]20[][]"));
 			add(new JLabel("Name"));
 			keyNameField = new JTextField();
-			add(keyNameField, "width 300!");
+			add(keyNameField, "width 100%");
 			add(new JLabel("Comments"));
 			commentsArea = new JTextArea();
 			JScrollPane scrollArea = new JScrollPane(commentsArea);
-			add(scrollArea, "width 300!, height 150!");
+			add(scrollArea, "width 100%, height 100%");
 		}
 
 		@Override
@@ -79,15 +79,15 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 		private JComboBox keyLengthSelection;
 		
 		public SelectAlgorithmStepPanel() {
-			super(new MigLayout("wrap 2", "[120!][]", "150[]40[]"));
+			super(new MigLayout("wrap 2", "[][]", "(50% - pref)[][]"));
 			
 			add(new JLabel("Select algorithm"));
 			algorithmSelection = new JComboBox<String>(new String[]{"RSA", "DSA"});
-			add(algorithmSelection, "width 200!");
+			add(algorithmSelection, "width 100%");
 			
 			add(new JLabel("Key length"));
 			keyLengthSelection = new JComboBox<String>(new String[]{"2048", "1024", "512", "256", "127"});
-			add(keyLengthSelection, "width 200!");
+			add(keyLengthSelection, "width 100%");
 		}
 
 		@Override
@@ -102,15 +102,15 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 		private JPasswordField passwordConfirm;
 		
 		public KeyPasswordStepPanel() {
-			super(new MigLayout("wrap 2", "[120!][]", "150[]40[]"));
+			super(new MigLayout("wrap 2", "[][]", "(50% - pref)[][]"));
 			add(new JLabel("Password"));
 			password = new JPasswordField();
 			password.addCaretListener(this::checkPasswordsTheSame);
-			add(password, "width 200!");
+			add(password, "width 100%");
 			add(new JLabel("Confirm"));
 			passwordConfirm = new JPasswordField();
 			passwordConfirm.addCaretListener(this::checkPasswordsTheSame);
-			add(passwordConfirm, "width 200!");
+			add(passwordConfirm, "width 100%");
 		}
 		
 		private void checkPasswordsTheSame(CaretEvent event) {
