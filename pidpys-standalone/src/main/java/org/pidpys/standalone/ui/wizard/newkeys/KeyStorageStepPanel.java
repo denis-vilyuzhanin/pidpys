@@ -12,7 +12,7 @@ import net.miginfocom.swing.MigLayout;
 
 import org.pidpys.standalone.ui.wizard.StepPanel;
 
-class KeyStorageStepPanel extends StepPanel {
+public class KeyStorageStepPanel extends StepPanel {
 	private JFileChooser fileChooser;
 	private JTextField filePath;
 	private JButton chooseFileButton;

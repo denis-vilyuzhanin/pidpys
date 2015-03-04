@@ -12,6 +12,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.function.Function;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,7 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public abstract class AbstractWizardWindow extends JFrame {
+public class AbstractWizardWindow extends JFrame {
 
 	private JButton nextButton;
 	private JButton previousButton;
@@ -30,6 +31,8 @@ public abstract class AbstractWizardWindow extends JFrame {
 	private String currentStep;
 	private Map<String, StepPanel> steps = new HashMap<>();
 	private Deque<String> passedSteps = new LinkedList<>();
+	private StepPanel current;
+	private Deque<StepPanel> passed = new LinkedList<>();
 	
 	public AbstractWizardWindow() {
 		build();
@@ -63,15 +66,36 @@ public abstract class AbstractWizardWindow extends JFrame {
 		JLabel wizardImage = new JLabel(new ImageIcon(createWizardImage()));
 		windowLayout.add(wizardImage, BorderLayout.WEST);
 		
-		bodyPanel = new JPanel(new CardLayout());
+		bodyPanel = new JPanel(new BorderLayout());
 		windowLayout.add(bodyPanel,BorderLayout.CENTER);
 	}
 	
+	public <T extends StepPanel> void beginStep(T step, WizardRouter<T> router) {
+		passedSteps.clear();
+		gotoNextStep(step, router);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends StepPanel> void gotoNextStep(T step, WizardRouter<T> router) {
+		step.attach(this, (WizardRouter<StepPanel>) router);
+		changeStep(step);
+		
+	}
+
+	private <T extends StepPanel> void changeStep(T step) {
+		bodyPanel.removeAll();
+		current = step;
+		bodyPanel.add(current, BorderLayout.CENTER);
+		bodyPanel.revalidate();
+	}
+	
 	protected void addStep(String stepKey, StepPanel stepPanel) {
-		stepPanel.attach(this);
+		//stepPanel.attach(this);
 		bodyPanel.add(stepPanel, stepKey);
 		steps.put(stepKey, stepPanel);
 	}
+	
+	
 	
 	public void beginStep(String stepKey) {
 		passedSteps.clear();
@@ -84,17 +108,25 @@ public abstract class AbstractWizardWindow extends JFrame {
 	}
 	
 	private void nextStep(ActionEvent event) {
-		StepPanel current = steps.get(currentStep);
+		/*StepPanel current = steps.get(currentStep);
 		if (current.canGoNext()) {
 			passedSteps.push(currentStep);
 			previousButton.setEnabled(true);
 			gotoStep(current.next());
+		}*/
+		StepPanel previous = current;
+		if (current.getNextRouter().route(this, current)) {
+			passed.push(previous);
 		}
 	}
 	
+	
+	
 	private void previousStep(ActionEvent event) {
-		gotoStep(passedSteps.pop());
-		previousButton.setEnabled(!passedSteps.isEmpty());
+		/*gotoStep(passedSteps.pop());
+		*/
+		changeStep(passed.pop());
+		previousButton.setEnabled(!passed.isEmpty());
 	}
 	
 	protected Image createWizardImage() {

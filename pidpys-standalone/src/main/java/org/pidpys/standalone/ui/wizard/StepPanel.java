@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 public class StepPanel extends JPanel {
 
 	protected AbstractWizardWindow wizard;
+	private WizardRouter<StepPanel> nextRouter;
 	
 	public StepPanel() {
 		super();
@@ -32,11 +33,18 @@ public class StepPanel extends JPanel {
 		return true;
 	}
 	
-	void attach(AbstractWizardWindow wizard) {
+	void attach(AbstractWizardWindow wizard, WizardRouter<StepPanel> nextRouter) {
 		this.wizard = wizard;
+		this.nextRouter = nextRouter;
 	}
 	
 	public AbstractWizardWindow getWizard() {
 		return this.wizard;
 	}
+
+	public WizardRouter<StepPanel> getNextRouter() {
+		return nextRouter;
+	}
+	
+	
 }

@@ -9,7 +9,7 @@ import net.miginfocom.swing.MigLayout;
 
 import org.pidpys.standalone.ui.wizard.StepPanel;
 
-class KeyInfoStepPanel extends StepPanel {
+public class KeyInfoStepPanel extends StepPanel {
 	private JTextField keyNameField;
 	private JTextArea commentsArea;
 	

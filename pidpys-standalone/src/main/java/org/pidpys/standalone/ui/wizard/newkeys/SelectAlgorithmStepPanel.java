@@ -7,7 +7,7 @@ import net.miginfocom.swing.MigLayout;
 
 import org.pidpys.standalone.ui.wizard.StepPanel;
 
-class SelectAlgorithmStepPanel extends StepPanel {
+public class SelectAlgorithmStepPanel extends StepPanel {
 	private JComboBox algorithmSelection;
 	private JComboBox keyLengthSelection;
 	

@@ -11,7 +11,7 @@ import net.miginfocom.swing.MigLayout;
 
 import org.pidpys.standalone.ui.wizard.StepPanel;
 
-class KeyPasswordStepPanel extends StepPanel {
+public class KeyPasswordStepPanel extends StepPanel {
 	
 	private JPasswordField password;
 	private JPasswordField passwordConfirm;
@@ -58,5 +58,9 @@ class KeyPasswordStepPanel extends StepPanel {
 	@Override
 	public String next() {
 		return "keyStorage";
+	}
+
+	public char[] getPassword() {
+		return password.getPassword();
 	}
 }
