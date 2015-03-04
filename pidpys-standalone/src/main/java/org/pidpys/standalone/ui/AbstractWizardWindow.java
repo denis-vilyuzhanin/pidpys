@@ -80,10 +80,12 @@ public abstract class AbstractWizardWindow extends JFrame {
 	}
 	
 	private void nextStep(ActionEvent event) {
-		passedSteps.push(currentStep);
-		previousButton.setEnabled(true);
 		StepPanel current = steps.get(currentStep);
-		gotoStep(current.next());
+		if (current.canGoNext()) {
+			passedSteps.push(currentStep);
+			previousButton.setEnabled(true);
+			gotoStep(current.next());
+		}
 	}
 	
 	private void previousStep(ActionEvent event) {
@@ -111,10 +113,6 @@ public abstract class AbstractWizardWindow extends JFrame {
 			super();
 		}
 
-		public String next() {
-			return null;
-		}
-
 		public StepPanel(LayoutManager arg0, boolean arg1) {
 			super(arg0, arg1);
 		}
@@ -123,5 +121,16 @@ public abstract class AbstractWizardWindow extends JFrame {
 			super(arg0);
 		}
 		
+		public String next() {
+			return null;
+		}
+		
+		public boolean canGoNext() {
+			return true;
+		}
+	}
+	
+	protected void setNextButtonEnabled(boolean isEnabled) {
+		nextButton.setEnabled(isEnabled);
 	}
 }
