@@ -1,4 +1,4 @@
-package org.pidpys.standalone.ui;
+package org.pidpys.standalone.ui.wizard;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.util.Deque;
@@ -69,8 +68,14 @@ public abstract class AbstractWizardWindow extends JFrame {
 	}
 	
 	protected void addStep(String stepKey, StepPanel stepPanel) {
+		stepPanel.attach(this);
 		bodyPanel.add(stepPanel, stepKey);
 		steps.put(stepKey, stepPanel);
+	}
+	
+	public void beginStep(String stepKey) {
+		passedSteps.clear();
+		gotoStep(stepKey);
 	}
 	
 	protected void gotoStep(String stepKey) {
@@ -106,30 +111,7 @@ public abstract class AbstractWizardWindow extends JFrame {
 		return image;
 	}
 	
-	protected class StepPanel extends JPanel {
-
-		public StepPanel() {
-			super();
-		}
-
-		public StepPanel(LayoutManager arg0, boolean arg1) {
-			super(arg0, arg1);
-		}
-
-		public StepPanel(LayoutManager arg0) {
-			super(arg0);
-		}
-		
-		public String next() {
-			return null;
-		}
-		
-		public boolean canGoNext() {
-			return true;
-		}
-	}
-	
-	protected void setNextButtonEnabled(boolean isEnabled) {
+	public void setNextButtonEnabled(boolean isEnabled) {
 		nextButton.setEnabled(isEnabled);
 	}
 }
