@@ -24,6 +24,7 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 	private KeyInfoStepPanel keyInfoPanel;
 	private SelectAlgorithmStepPanel selectAlgorithmPanel;
 	private KeyPasswordStepPanel keyPasswordPanel;
+	private KeyStorageStepPanel keyStoragePanel;
 	
 	public NewKeysWizardWindow() {
 		super.setTitle("New Keys");
@@ -36,6 +37,9 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 		
 		keyPasswordPanel = new KeyPasswordStepPanel();
 		addStep("keyPassword", keyPasswordPanel);
+		
+		keyStoragePanel = new KeyStorageStepPanel();
+		addStep("keyStorage", keyStoragePanel);
 		
 		gotoStep("keyInfo");
 	}
@@ -142,8 +146,20 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 
 		@Override
 		public String next() {
+			return "keyStorage";
+		}
+	}
+	
+	
+	private class KeyStorageStepPanel extends StepPanel {
+		private JTextField filePath;
+		
+		public KeyStorageStepPanel() {
+			super(new MigLayout("", "", ""));
 			
-			return super.next();
+			add(new JLabel("Store to file"), "align bottom");
+			filePath = new JTextField();
+			add(filePath, "align bottom");
 		}
 	}
 	
