@@ -1,12 +1,16 @@
 package org.pidpys.standalone.ui;
 
+import java.awt.Button;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -25,6 +29,7 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 	private SelectAlgorithmStepPanel selectAlgorithmPanel;
 	private KeyPasswordStepPanel keyPasswordPanel;
 	private KeyStorageStepPanel keyStoragePanel;
+	private File defaultKeysFolder = new File(System.getProperty("user.home"));
 	
 	public NewKeysWizardWindow() {
 		super.setTitle("New Keys");
@@ -152,14 +157,30 @@ public class NewKeysWizardWindow extends AbstractWizardWindow {
 	
 	
 	private class KeyStorageStepPanel extends StepPanel {
+		private JFileChooser fileChooser;
 		private JTextField filePath;
+		private JButton chooseFileButton;
 		
 		public KeyStorageStepPanel() {
-			super(new MigLayout("", "", ""));
+			super(new MigLayout("", "", "40%[][]"));
 			
-			add(new JLabel("Store to file"), "align bottom");
-			filePath = new JTextField();
-			add(filePath, "align bottom");
+			fileChooser = new JFileChooser();
+			
+			add(new JLabel("Store to file"), "wrap");
+			filePath = new JTextField(defaultKeysFolder.getAbsolutePath() + File.separator + "my.keys");
+			add(filePath, "width 100%");
+			
+			chooseFileButton = new JButton("Browse...");
+			chooseFileButton.addActionListener(this::chooseFile);
+			add(chooseFileButton, "");
+		}
+		
+		private void chooseFile(ActionEvent event) {
+			fileChooser.setSelectedFile(new File(filePath.getText()));
+			int result = fileChooser.showSaveDialog(NewKeysWizardWindow.this);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				filePath.setText(fileChooser.getSelectedFile().getAbsolutePath());
+			}
 		}
 	}
 	

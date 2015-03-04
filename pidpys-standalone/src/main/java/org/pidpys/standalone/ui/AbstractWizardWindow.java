@@ -38,7 +38,6 @@ public abstract class AbstractWizardWindow extends JFrame {
 
 	private void build() {
 		setSize(640, 480);
-		setResizable(false);
 		JPanel windowLayout = new JPanel();
 		windowLayout.setLayout(new BorderLayout());
 		super.add(windowLayout);
