@@ -1,10 +1,13 @@
 package org.pidpys.standalone.view;
 
 import java.util.Arrays;
+import javafx.application.Platform;
 
 import javax.swing.JOptionPane;
 
 import org.pidpys.standalone.controller.NewKeysWizardController;
+import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
+import org.pidpys.standalone.ui.javafx.wizard.newkeys.SelectNewKeysGeneratingFlowDialog;
 import org.pidpys.standalone.ui.wizard.AbstractWizardWindow;
 import org.pidpys.standalone.ui.wizard.newkeys.KeyInfoStepPanel;
 import org.pidpys.standalone.ui.wizard.newkeys.KeyPasswordStepPanel;
@@ -14,12 +17,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NewKeysWizardView {
+public class NewKeysWizardView extends FxView{
 
 	@Autowired
 	NewKeysWizardController newKeysWizardController;
 
-	public void show() {
+        public void show() {
+            WizardWindow wizardWindow = new WizardWindow();
+            wizardWindow.show();
+            showFlowSelectionStep(wizardWindow);
+        }
+        
+        void showFlowSelectionStep(WizardWindow wizardWindow) {
+            wizardWindow.onNextAction((w) -> {
+                return true;
+            });
+            wizardWindow.showDialog(new SelectNewKeysGeneratingFlowDialog());
+        }
+        
+	public void show1() {
 		AbstractWizardWindow wizardWindow = new AbstractWizardWindow();
 		wizardWindow.beginStep(new KeyInfoStepPanel(), this::keyInfoStepRouter);
 		wizardWindow.setVisible(true);
