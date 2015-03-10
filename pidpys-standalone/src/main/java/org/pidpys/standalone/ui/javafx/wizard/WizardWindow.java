@@ -50,7 +50,7 @@ public class WizardWindow extends JavaFXWindow {
     
     public void doNextAction() {
         if (currentStep.nextAction.apply(this)) {
-            System.out.println("Go to next step: " + nextButton);
+            
         }
     }
     

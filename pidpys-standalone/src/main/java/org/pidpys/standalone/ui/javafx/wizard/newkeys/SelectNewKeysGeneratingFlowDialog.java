@@ -14,5 +14,22 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  */
 public class SelectNewKeysGeneratingFlowDialog extends JavaFXComponent<Parent>{
     
+    public enum Option {
+        STANDART,
+        CUSTOM
+    }
     
+    private Option selectedOption = Option.STANDART;
+    
+    public void handleStandartKeySelected() {
+        selectedOption = Option.STANDART;
+    }
+    
+    public void handleCustomKeySelected() {
+        selectedOption = Option.CUSTOM;
+    }
+    
+    public Option getSelectedOption() {
+        return selectedOption;
+    }
 }

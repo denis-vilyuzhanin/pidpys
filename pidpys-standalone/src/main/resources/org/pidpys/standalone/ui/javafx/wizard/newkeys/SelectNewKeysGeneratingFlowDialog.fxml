@@ -7,14 +7,24 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <RadioButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="May 17, 2012 - Here is a sample alternate implementation. It uses a subclass of Group with a layoutChildren implementation rather than the binding api." wrapText="true">
-         <padding>
-            <Insets bottom="20.0" />
-         </padding>
+      <RadioButton fx:id="standartKeyOption" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleStandartKeySelected" selected="true" text="Standart key" wrapText="true">
+         <toggleGroup>
+            <ToggleGroup fx:id="keyOption" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="May 17, 2012 - Here is a sample alternate implementation. It uses a subclass of Group with a layoutChildren implementation rather than the binding api." wrapText="true" GridPane.rowIndex="1" />
+      <Label text="May 17, 2012 - Here is a sample alternate implementation. It uses a subclass of Group with a layoutChildren implementation rather than the binding api." wrapText="true">
+         <padding>
+            <Insets bottom="20.0" left="30.0" />
+         </padding>
+      </Label>
+      <RadioButton fx:id="customKeyOption" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCustomKeySelected" text="Custom key" toggleGroup="$keyOption" wrapText="true" GridPane.rowIndex="1" />
+      <Label text="May 17, 2012 - Here is a sample alternate implementation. It uses a subclass of Group with a layoutChildren implementation rather than the binding api." wrapText="true">
+         <padding>
+            <Insets bottom="20.0" left="30.0" />
+         </padding>
+      </Label>
    </children>
    <padding>
       <Insets right="10.0" />

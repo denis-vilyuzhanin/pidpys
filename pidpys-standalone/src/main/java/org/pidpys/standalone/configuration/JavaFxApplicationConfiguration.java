@@ -6,6 +6,7 @@
 package org.pidpys.standalone.configuration;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
@@ -21,7 +22,8 @@ public class JavaFxApplicationConfiguration {
     
     @PostConstruct
     public void init() {
-        new JFXPanel(); 
+        new JFXPanel();
+        Platform.setImplicitExit(false);
     }
     
     
