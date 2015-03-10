@@ -5,22 +5,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" prefHeight="562.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="windowPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" prefHeight="562.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" BorderPane.alignment="BOTTOM_RIGHT">
         <items>
           <Button mnemonicParsing="false" text="Cancel" />
             <Separator orientation="VERTICAL" prefWidth="6.0" />
-            <Button mnemonicParsing="false" onAction="#doNextAction" text="Next" />
-            <Button mnemonicParsing="false" text="Previous" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#doNextAction" text="Next" />
+            <Button fx:id="previousButton" mnemonicParsing="false" text="Previous" />
         </items>
       </ToolBar>
    </bottom>
    <left>
-      <Pane id="banner" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="banner" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
-   <center>
-      <StackPane id="body" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
 </BorderPane>

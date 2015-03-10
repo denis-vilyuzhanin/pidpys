@@ -14,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
@@ -29,19 +32,25 @@ public class WizardWindow extends JavaFXWindow {
 
     private Step currentStep = new Step();
     
+    @FXML
+    private BorderPane windowPane;
+    
     @FXML 
-    private Pane body;
+    private StackPane body;
+    
+    @FXML 
+    private Button nextButton;
     
     public void showDialog(JavaFXComponent<Parent> dialogComponent) {
         currentStep.dialog = dialogComponent;
         execute(() -> {
-            body.getChildren().setAll(dialogComponent.getContainer());
+            windowPane.setCenter(dialogComponent.getContainer());
         });
     }
     
     public void doNextAction() {
         if (currentStep.nextAction.apply(this)) {
-            System.out.println("Go to next step");
+            System.out.println("Go to next step: " + nextButton);
         }
     }
     
@@ -53,4 +62,22 @@ public class WizardWindow extends JavaFXWindow {
         private Function<WizardWindow, Boolean> nextAction = (w) -> {return false;};
         private JavaFXComponent<Parent> dialog;
     }
+
+    public StackPane getBody() {
+        return body;
+    }
+
+    public void setBody(StackPane body) {
+        this.body = body;
+    }
+
+    public Button getNextButton() {
+        return nextButton;
+    }
+
+    public void setNextButton(Button nextButton) {
+        this.nextButton = nextButton;
+    }
+    
+    
 }

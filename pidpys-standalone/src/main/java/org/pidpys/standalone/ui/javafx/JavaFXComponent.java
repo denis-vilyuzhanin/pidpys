@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 
 /**
@@ -21,6 +22,7 @@ public class JavaFXComponent<T> {
     
     public JavaFXComponent() {
         try {
+            new JFXPanel();
             URL fxml = createFXMLUrl();
             FXMLLoader loader = new FXMLLoader(fxml);
             loader.setController(this);
