@@ -25,7 +25,6 @@ public class NewKeysWizardView extends FxView {
 
     public WizardWindow showWizard() {
         WizardWindow wizardWindow = new WizardWindow();
-        wizardWindow.show();
         return wizardWindow;
 
     }
@@ -44,7 +43,7 @@ public class NewKeysWizardView extends FxView {
         wizardWindow.showDialog(dialog);
         wizardWindow.onNextAction((w) -> {
             System.out.println("Confirmed");
-            return true;
+            return false;
         });
     }
 

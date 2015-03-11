@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author dvily_000
  */
-public class JavaFXWindow extends JavaFXComponent<Parent> {
+public class JavaFXWindow extends JavaFXComponent {
     
     private Stage stage;
     

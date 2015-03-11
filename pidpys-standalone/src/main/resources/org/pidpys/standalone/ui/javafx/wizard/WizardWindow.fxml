@@ -11,8 +11,8 @@
         <items>
           <Button mnemonicParsing="false" text="Cancel" />
             <Separator orientation="VERTICAL" prefWidth="6.0" />
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#doNextAction" text="Next" />
-            <Button fx:id="previousButton" mnemonicParsing="false" text="Previous" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonClicked" text="Next" />
+            <Button fx:id="previousButton" disable="true" mnemonicParsing="false" onAction="#handlePreviousButtonClicked" text="Previous" />
         </items>
       </ToolBar>
    </bottom>

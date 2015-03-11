@@ -12,7 +12,7 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  *
  * @author dvily_000
  */
-public class SelectNewKeysGeneratingFlowDialog extends JavaFXComponent<Parent>{
+public class SelectNewKeysGeneratingFlowDialog extends JavaFXComponent {
     
     public enum Option {
         STANDART,

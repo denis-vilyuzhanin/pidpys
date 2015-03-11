@@ -12,6 +12,6 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  *
  * @author dvily_000
  */
-public class NewKeysConfirmationDialog extends JavaFXComponent<Parent> {
+public class NewKeysConfirmationDialog extends JavaFXComponent {
     
 }

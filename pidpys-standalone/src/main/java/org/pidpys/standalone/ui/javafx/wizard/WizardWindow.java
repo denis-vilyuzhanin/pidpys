@@ -5,22 +5,14 @@
  */
 package org.pidpys.standalone.ui.javafx.wizard;
 
-import java.io.IOException;
-import java.net.URL;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.function.Function;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-
-import javafx.stage.Stage;
 import org.pidpys.standalone.ui.javafx.JavaFXComponent;
 import org.pidpys.standalone.ui.javafx.JavaFXWindow;
 
@@ -30,37 +22,74 @@ import org.pidpys.standalone.ui.javafx.JavaFXWindow;
  */
 public class WizardWindow extends JavaFXWindow {
 
-    private Step currentStep = new Step();
-    
     @FXML
-    private BorderPane windowPane;
+    BorderPane windowPane;
+
+    @FXML 
+    StackPane body;
     
     @FXML 
-    private StackPane body;
+    Button nextButton;
     
     @FXML 
-    private Button nextButton;
+    Button previousButton;
     
-    public void showDialog(JavaFXComponent<Parent> dialogComponent) {
-        currentStep.dialog = dialogComponent;
-        execute(() -> {
-            windowPane.setCenter(dialogComponent.getContainer());
-        });
-    }
+    private Step currentStep;
+    private Step nextStep = new Step();
+    private Deque<Step> passedSteps = new LinkedList<>();
     
-    public void doNextAction() {
-        if (currentStep.nextAction.apply(this)) {
-            
-        }
+    public void showDialog(JavaFXComponent dialogComponent) {
+        nextStep.dialog = dialogComponent;
     }
     
     public void onNextAction(Function<WizardWindow, Boolean> nextAction) {
-        currentStep.nextAction = nextAction;
+        nextStep.nextAction = nextAction;
     }
+    
+    @Override
+    public void show() {
+        showNextStep();
+        super.show();
+    }
+
+    @FXML
+    void handleNextButtonClicked() {
+        if (currentStep.nextAction.apply(this)) {
+            passedSteps.push(currentStep);
+            showNextStep();
+            previousButton.setDisable(false);
+        }
+    }
+    
+    @FXML
+    void handlePreviousButtonClicked() {
+        if (!passedSteps.isEmpty()) {
+            currentStep = passedSteps.pop();
+            showCurrentStep();
+        }
+        previousButton.setDisable(passedSteps.isEmpty());
+    }
+    
+    private void showNextStep() {
+        currentStep = nextStep;
+        nextStep = new Step();
+        showCurrentStep();
+    }
+    
+    private void showCurrentStep() {
+        showInCenter(currentStep.dialog.getContainer());
+    }
+    
+    private void showInCenter(Parent panel) {
+        execute(() -> {
+            windowPane.setCenter(panel);
+        });
+    }
+    
     
     private class Step {
         private Function<WizardWindow, Boolean> nextAction = (w) -> {return false;};
-        private JavaFXComponent<Parent> dialog;
+        private JavaFXComponent dialog;
     }
 
     public StackPane getBody() {

@@ -16,6 +16,7 @@ public class NewKeysWizardController {
     public void createNewKeys(ActionEvent event) {
         WizardWindow wizard = newKeysWizardView.showWizard();
         newKeysWizardView.showFlowSelectionDialog(wizard);
+        wizard.show();
     }
 
     public void createStandartKey(WizardWindow wizard) {

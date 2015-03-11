@@ -17,9 +17,9 @@ import javafx.scene.Parent;
  *
  * @author dvily_000
  */
-public class JavaFXComponent<T> {
+public class JavaFXComponent {
     
-    protected final T container;
+    protected final Parent container;
     
     public JavaFXComponent() {
         try {
@@ -33,7 +33,7 @@ public class JavaFXComponent<T> {
         }
     }
     
-    public T getContainer() {
+    public Parent getContainer() {
         return container;
     }
     
@@ -48,6 +48,10 @@ public class JavaFXComponent<T> {
     }
         
     protected void execute(Runnable code) {
-        Platform.runLater(code);
+        if (Platform.isFxApplicationThread()) {
+            code.run();
+        } else {
+            Platform.runLater(code);
+        }
     }
 }
