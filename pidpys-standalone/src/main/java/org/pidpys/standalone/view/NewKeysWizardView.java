@@ -1,9 +1,12 @@
 package org.pidpys.standalone.view;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Platform;
 
 import javax.swing.JOptionPane;
+import org.pidpys.model.NewKeysOptionsModel;
 
 import org.pidpys.standalone.controller.NewKeysWizardController;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
@@ -22,23 +25,31 @@ public class NewKeysWizardView extends FxView {
 
     @Autowired
     NewKeysWizardController newKeysWizardController;
+    
+    private Map<NewKeysOptionsModel, WizardWindow> modelToWizard = new HashMap<>();
 
-    public WizardWindow showWizard() {
+    public void newWizard(NewKeysOptionsModel model) {
         WizardWindow wizardWindow = new WizardWindow();
-        return wizardWindow;
-
+        modelToWizard.putIfAbsent(model, new WizardWindow());
+    }
+    
+    public void show(NewKeysOptionsModel model) {
+        modelToWizard.get(model).show();
     }
 
-    public void showFlowSelectionDialog(WizardWindow wizardWindow) {
+
+    public void showFlowSelectionDialog(NewKeysOptionsModel model) {
+        WizardWindow wizardWindow = modelToWizard.get(model);
         SelectNewKeysGeneratingFlowDialog dialog = new SelectNewKeysGeneratingFlowDialog();
         wizardWindow.showDialog(dialog);
         wizardWindow.onNextAction((w) -> {
-            newKeysWizardController.createStandartKey(wizardWindow);
+            newKeysWizardController.createStandartKey(model);
             return true;
         });
     }
 
-    public void showConfirmatinDialog(WizardWindow wizardWindow) {
+    public void showConfirmatinDialog(NewKeysOptionsModel model) {
+        WizardWindow wizardWindow = modelToWizard.get(model);
         NewKeysConfirmationDialog dialog = new NewKeysConfirmationDialog();
         wizardWindow.showDialog(dialog);
         wizardWindow.onConfirmAction((w) -> {
@@ -93,4 +104,5 @@ public class NewKeysWizardView extends FxView {
         return true;
     }
 
+   
 }

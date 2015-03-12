@@ -1,6 +1,7 @@
 package org.pidpys.standalone.controller;
 
 import java.awt.event.ActionEvent;
+import org.pidpys.model.NewKeysOptionsModel;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
 
 import org.pidpys.standalone.view.NewKeysWizardView;
@@ -14,12 +15,13 @@ public class NewKeysWizardController {
     NewKeysWizardView newKeysWizardView;
 
     public void createNewKeys(ActionEvent event) {
-        WizardWindow wizard = newKeysWizardView.showWizard();
-        newKeysWizardView.showFlowSelectionDialog(wizard);
-        wizard.show();
+        NewKeysOptionsModel model = new NewKeysOptionsModel();
+        newKeysWizardView.newWizard(model);
+        newKeysWizardView.showFlowSelectionDialog(model);
+        newKeysWizardView.show(model);
     }
 
-    public void createStandartKey(WizardWindow wizard) {
-        newKeysWizardView.showConfirmatinDialog(wizard);
+    public void createStandartKey(NewKeysOptionsModel model) {
+        newKeysWizardView.showConfirmatinDialog(model);
     }
 }
