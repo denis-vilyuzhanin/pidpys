@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Please confirm following parameters" />
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <VBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
             <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="10.0" minWidth="10.0">
               <columnConstraints>
@@ -35,12 +35,12 @@
                         <Insets right="20.0" />
                      </opaqueInsets>
                   </Label>
-                  <TextField editable="false" text="RSA" GridPane.columnIndex="1">
+                  <TextField editable="false" maxWidth="-Infinity" text="RSA" GridPane.columnIndex="1">
                      <opaqueInsets>
                         <Insets left="20.0" />
                      </opaqueInsets>
                   </TextField>
-                  <TextField editable="false" text="2048" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField editable="false" maxWidth="-Infinity" text="2048" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets left="20.0" />
                      </opaqueInsets>
@@ -48,7 +48,7 @@
                   <Label text="Store key in" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <TextField editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="D:/Users/user/.pidpys/mykeys.pem sdf sdf adsf s fsdf a" />
+            <TextField editable="false" maxWidth="-Infinity" text="D:/Users/user/.pidpys/mykeys.pem sdf sdf adsf s fsdf a" />
          </children>
       </VBox>
    </children>
