@@ -5,7 +5,9 @@
  */
 package org.pidpys.standalone.ui.javafx.wizard.newkeys;
 
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import org.pidpys.model.NewKeysOptionsModel;
 import org.pidpys.standalone.ui.javafx.JavaFXComponent;
 
@@ -15,14 +17,27 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  */
 public class NewKeysConfirmationDialog extends JavaFXComponent {
 
-    public void showAlgorithmName(String toString) {
-
+    @FXML
+    TextField algorithmField;
+    
+    @FXML
+    TextField keyLengthField;
+    
+    @FXML
+    TextField filePathField;
+    
+    
+    public void showAlgorithmName(String algorithm) {
+        algorithmField.setText(algorithm);
     }
 
     public void showKeyLength(int keyLength) {
+        keyLengthField.setText(Integer.toString(keyLength));
     }
 
-    public void showStore(String absolutePath) {
+    public void showStore(String filePath) {
+        filePathField.setText(filePath);
+        //filePathField.setPrefColumnCount(filePath.length() / 2 + 5);
     }
 
     

@@ -23,6 +23,7 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Algorithm">
@@ -35,20 +36,20 @@
                         <Insets right="20.0" />
                      </opaqueInsets>
                   </Label>
-                  <TextField editable="false" maxWidth="-Infinity" text="RSA" GridPane.columnIndex="1">
+                  <TextField fx:id="algorithmField" editable="false" maxWidth="1.7976931348623157E308" text="RSA" GridPane.columnIndex="1">
                      <opaqueInsets>
                         <Insets left="20.0" />
                      </opaqueInsets>
                   </TextField>
-                  <TextField editable="false" maxWidth="-Infinity" text="2048" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="keyLengthField" editable="false" maxWidth="1.7976931348623157E308" text="2048" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets left="20.0" />
                      </opaqueInsets>
                   </TextField>
                   <Label text="Store key in" GridPane.rowIndex="4" />
+                  <TextField fx:id="filePathField" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="C:\Users\dvily_000.DENIS-NOTE\.pidpys\key-1426196490586.pem" GridPane.columnSpan="2" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <TextField editable="false" maxWidth="-Infinity" text="D:/Users/user/.pidpys/mykeys.pem sdf sdf adsf s fsdf a" />
          </children>
       </VBox>
    </children>
