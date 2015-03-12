@@ -7,6 +7,7 @@ package org.pidpys.standalone.ui.javafx.wizard;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -34,6 +35,9 @@ public class WizardWindow extends JavaFXWindow {
     @FXML 
     Button previousButton;
     
+    @FXML
+    Button confirmButton;
+    
     private Step currentStep;
     private Step nextStep = new Step();
     private Deque<Step> passedSteps = new LinkedList<>();
@@ -44,6 +48,16 @@ public class WizardWindow extends JavaFXWindow {
     
     public void onNextAction(Function<WizardWindow, Boolean> nextAction) {
         nextStep.nextAction = nextAction;
+        nextStep.confirmAction = null;
+    }
+    
+    public void onConfirmAction(Consumer<WizardWindow> confirmAction) {
+        nextStep.nextAction = null;
+        nextStep.confirmAction = confirmAction;
+    }
+        
+    public void setNextButtonLabel(String label) {
+        nextStep.nextButtonLable = label;
     }
     
     @Override
@@ -59,6 +73,11 @@ public class WizardWindow extends JavaFXWindow {
             showNextStep();
             previousButton.setDisable(false);
         }
+    }
+    
+    @FXML
+    void handleConfirmButtonClicked() {
+        currentStep.confirmAction.accept(this);
     }
     
     @FXML
@@ -78,6 +97,8 @@ public class WizardWindow extends JavaFXWindow {
     
     private void showCurrentStep() {
         showInCenter(currentStep.dialog.getContainer());
+        nextButton.setVisible(currentStep.nextAction != null);
+        confirmButton.setVisible(currentStep.confirmAction != null);
     }
     
     private void showInCenter(Parent panel) {
@@ -88,25 +109,10 @@ public class WizardWindow extends JavaFXWindow {
     
     
     private class Step {
-        private Function<WizardWindow, Boolean> nextAction = (w) -> {return false;};
+        private Function<WizardWindow, Boolean> nextAction;
+        private Consumer<WizardWindow>  confirmAction;
         private JavaFXComponent dialog;
+        private String nextButtonLable;
     }
-
-    public StackPane getBody() {
-        return body;
-    }
-
-    public void setBody(StackPane body) {
-        this.body = body;
-    }
-
-    public Button getNextButton() {
-        return nextButton;
-    }
-
-    public void setNextButton(Button nextButton) {
-        this.nextButton = nextButton;
-    }
-    
-    
+  
 }

@@ -41,9 +41,8 @@ public class NewKeysWizardView extends FxView {
     public void showConfirmatinDialog(WizardWindow wizardWindow) {
         NewKeysConfirmationDialog dialog = new NewKeysConfirmationDialog();
         wizardWindow.showDialog(dialog);
-        wizardWindow.onNextAction((w) -> {
+        wizardWindow.onConfirmAction((w) -> {
             System.out.println("Confirmed");
-            return false;
         });
     }
 
