@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Label" />
-      <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-        <columns>
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="C1" />
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="C2" />
-        </columns>
-      </TableView>
+      <Label text="Please confirm following parameters" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+         <children>
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="10.0" minWidth="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Algorithm">
+                     <opaqueInsets>
+                        <Insets right="20.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <Label text="Key length" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets right="20.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <TextField editable="false" text="RSA" GridPane.columnIndex="1">
+                     <opaqueInsets>
+                        <Insets left="20.0" />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField editable="false" text="2048" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets left="20.0" />
+                     </opaqueInsets>
+                  </TextField>
+                  <Label text="Store key in" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <TextField editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="D:/Users/user/.pidpys/mykeys.pem sdf sdf adsf s fsdf a" />
+         </children>
+      </VBox>
    </children>
 </VBox>

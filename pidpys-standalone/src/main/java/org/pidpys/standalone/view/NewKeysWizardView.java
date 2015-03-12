@@ -51,6 +51,9 @@ public class NewKeysWizardView extends FxView {
     public void showConfirmatinDialog(NewKeysOptionsModel model) {
         WizardWindow wizardWindow = modelToWizard.get(model);
         NewKeysConfirmationDialog dialog = new NewKeysConfirmationDialog();
+        dialog.showAlgorithmName(model.getAlgorithm().toString());
+        dialog.showKeyLength(model.getKeyLength());
+        dialog.showStore(model.getStore().getAbsolutePath());
         wizardWindow.showDialog(dialog);
         wizardWindow.onConfirmAction((w) -> {
             System.out.println("Confirmed");

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -22,6 +23,9 @@
       </ToolBar>
    </bottom>
    <left>
-      <Pane fx:id="banner" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="banner" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="243.0" radius="88.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></Pane>
    </left>
 </BorderPane>

@@ -1,7 +1,9 @@
 package org.pidpys.standalone.controller;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import org.pidpys.model.NewKeysOptionsModel;
+import org.pidpys.model.SignatureAlgorithm;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
 
 import org.pidpys.standalone.view.NewKeysWizardView;
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class NewKeysWizardController {
 
+    private static final File USER_HOME = new File(System.getProperty("user.home"));
+    private static final File APPLICATION_USER_HOME = new File(USER_HOME, ".pidpys");
+    
     @Autowired
     NewKeysWizardView newKeysWizardView;
 
@@ -22,6 +27,9 @@ public class NewKeysWizardController {
     }
 
     public void createStandartKey(NewKeysOptionsModel model) {
+        model.setAlgorithm(SignatureAlgorithm.RSA);
+        model.setKeyLength(2048);
+        model.setStore(new File(APPLICATION_USER_HOME, "key-" + System.currentTimeMillis() + ".pem"));
         newKeysWizardView.showConfirmatinDialog(model);
     }
 }
