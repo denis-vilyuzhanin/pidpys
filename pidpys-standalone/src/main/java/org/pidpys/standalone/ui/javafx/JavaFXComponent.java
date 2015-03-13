@@ -8,6 +8,7 @@ package org.pidpys.standalone.ui.javafx;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
@@ -18,14 +19,20 @@ import javafx.scene.Parent;
  * @author dvily_000
  */
 public class JavaFXComponent {
+    private static final ResourceBundle EMPTY_LOCALIZATION = new EmptyResourceBundle();
     
     protected final Parent container;
     
     public JavaFXComponent() {
+        this(EMPTY_LOCALIZATION);
+    }
+    
+    public JavaFXComponent(ResourceBundle localization) {
         try {
             new JFXPanel();
             URL fxml = createFXMLUrl();
             FXMLLoader loader = new FXMLLoader(fxml);
+            loader.setResources(localization);
             loader.setController(this);
             container = loader.load();
         } catch (IOException ex) {

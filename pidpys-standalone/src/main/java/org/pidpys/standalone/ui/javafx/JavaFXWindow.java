@@ -8,6 +8,7 @@ package org.pidpys.standalone.ui.javafx;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,15 @@ public class JavaFXWindow extends JavaFXComponent {
     private Stage stage;
     
     public JavaFXWindow() {
+        showStage();
+    }
+    
+    public JavaFXWindow(ResourceBundle localization) {
+        super(localization);
+        showStage();
+    }
+    
+    private void showStage() {
         execute(()->{
             stage = new Stage();
             stage.setScene(new Scene(container));

@@ -2,6 +2,7 @@ package org.pidpys.standalone.view;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 import org.pidpys.model.NewKeysOptionsModel;
 import org.pidpys.standalone.controller.NewKeysWizardController;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
@@ -14,13 +15,15 @@ import org.springframework.stereotype.Component;
 public class NewKeysWizardView extends FxView {
 
     @Autowired
+    ResourceBundle localization;
+    
+    @Autowired
     NewKeysWizardController newKeysWizardController;
     
     private Map<NewKeysOptionsModel, WizardWindow> modelToWizard = new HashMap<>();
 
     public void newWizard(NewKeysOptionsModel model) {
-        WizardWindow wizardWindow = new WizardWindow();
-        modelToWizard.putIfAbsent(model, new WizardWindow());
+        modelToWizard.put(model, new WizardWindow(localization));
     }
     
     public void show(NewKeysOptionsModel model) {
@@ -30,7 +33,7 @@ public class NewKeysWizardView extends FxView {
 
     public void showFlowSelectionDialog(NewKeysOptionsModel model) {
         WizardWindow wizardWindow = modelToWizard.get(model);
-        SelectNewKeysGeneratingFlowDialog dialog = new SelectNewKeysGeneratingFlowDialog();
+        SelectNewKeysGeneratingFlowDialog dialog = new SelectNewKeysGeneratingFlowDialog(localization);
         wizardWindow.showDialog(dialog);
         wizardWindow.onNextAction((w) -> {
             newKeysWizardController.createStandartKey(model);
@@ -40,7 +43,7 @@ public class NewKeysWizardView extends FxView {
 
     public void showConfirmatinDialog(NewKeysOptionsModel model) {
         WizardWindow wizardWindow = modelToWizard.get(model);
-        NewKeysConfirmationDialog dialog = new NewKeysConfirmationDialog();
+        NewKeysConfirmationDialog dialog = new NewKeysConfirmationDialog(localization);
         dialog.showAlgorithmName(model.getAlgorithm().toString());
         dialog.showKeyLength(model.getKeyLength());
         dialog.showStore(model.getStore().getAbsolutePath());

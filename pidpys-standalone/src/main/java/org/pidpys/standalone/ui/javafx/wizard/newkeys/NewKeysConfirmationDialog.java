@@ -5,6 +5,7 @@
  */
 package org.pidpys.standalone.ui.javafx.wizard.newkeys;
 
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -25,6 +26,13 @@ public class NewKeysConfirmationDialog extends JavaFXComponent {
     
     @FXML
     TextField filePathField;
+
+    public NewKeysConfirmationDialog() {
+    }
+    
+    public NewKeysConfirmationDialog(ResourceBundle localization) {
+        super(localization);
+    }
     
     
     public void showAlgorithmName(String algorithm) {

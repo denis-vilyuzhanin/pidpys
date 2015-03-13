@@ -6,21 +6,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <RadioButton fx:id="standartKeyOption" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleStandartKeySelected" selected="true" text="Standart key" wrapText="true">
+      <RadioButton fx:id="standartKeyOption" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleStandartKeySelected" selected="true" text="%window.wizard.dialog.selectKeys.radio.standartKey" wrapText="true">
          <toggleGroup>
             <ToggleGroup fx:id="keyOption" />
          </toggleGroup>
       </RadioButton>
-      <Label text="May 17, 2012 - Here is a sample alternate implementation. It uses a subclass of Group with a layoutChildren implementation rather than the binding api." wrapText="true">
+      <Label text="%window.wizard.dialog.selectKeys.label.standartKey" wrapText="true">
          <padding>
             <Insets bottom="20.0" left="30.0" />
          </padding>
       </Label>
-      <RadioButton fx:id="customKeyOption" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCustomKeySelected" text="Custom key" toggleGroup="$keyOption" wrapText="true" GridPane.rowIndex="1" />
-      <Label text="May 17, 2012 - Here is a sample alternate implementation. It uses a subclass of Group with a layoutChildren implementation rather than the binding api." wrapText="true">
+      <RadioButton fx:id="customKeyOption" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCustomKeySelected" text="%window.wizard.dialog.selectKeys.radio.customKey" toggleGroup="$keyOption" wrapText="true" GridPane.rowIndex="1" />
+      <Label text="%window.wizard.dialog.selectKeys.label.customKey" wrapText="true">
          <padding>
             <Insets bottom="20.0" left="30.0" />
          </padding>

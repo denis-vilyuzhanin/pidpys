@@ -5,6 +5,7 @@
  */
 package org.pidpys.standalone.ui.javafx.wizard.newkeys;
 
+import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import org.pidpys.standalone.ui.javafx.JavaFXComponent;
 
@@ -13,6 +14,14 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  * @author dvily_000
  */
 public class SelectNewKeysGeneratingFlowDialog extends JavaFXComponent {
+
+    public SelectNewKeysGeneratingFlowDialog() {
+        
+    }
+    
+    public SelectNewKeysGeneratingFlowDialog(ResourceBundle localization) {
+        super(localization);
+    }
     
     public enum Option {
         STANDART,

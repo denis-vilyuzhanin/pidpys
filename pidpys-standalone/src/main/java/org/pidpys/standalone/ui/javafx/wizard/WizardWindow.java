@@ -7,6 +7,7 @@ package org.pidpys.standalone.ui.javafx.wizard;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import javafx.fxml.FXML;
@@ -41,6 +42,10 @@ public class WizardWindow extends JavaFXWindow {
     private Step currentStep;
     private Step nextStep = new Step();
     private Deque<Step> passedSteps = new LinkedList<>();
+
+    public WizardWindow(ResourceBundle localization) {
+        super(localization);
+    }
     
     public void showDialog(JavaFXComponent dialogComponent) {
         nextStep.dialog = dialogComponent;

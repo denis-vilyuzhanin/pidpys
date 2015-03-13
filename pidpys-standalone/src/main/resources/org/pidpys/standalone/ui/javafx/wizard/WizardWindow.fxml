@@ -6,19 +6,19 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="windowPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" prefHeight="562.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="windowPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="562.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" BorderPane.alignment="BOTTOM_RIGHT">
+      <ToolBar minHeight="0.0" minWidth="0.0" nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="BOTTOM_RIGHT">
         <items>
-          <Button mnemonicParsing="false" text="Cancel" />
+          <Button mnemonicParsing="false" text="%window.wizard.button.cancel" />
             <Separator orientation="VERTICAL" prefWidth="6.0" />
             <StackPane>
                <children>
-                  <Button fx:id="nextButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNextButtonClicked" text="Next" visible="false" />
-                  <Button fx:id="confirmButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleConfirmButtonClicked" text="Confirm" visible="false" />
+                  <Button fx:id="nextButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNextButtonClicked" text="%window.wizard.button.next" visible="false" />
+                  <Button fx:id="confirmButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleConfirmButtonClicked" text="%window.wizard.button.confirm" visible="false" />
                </children>
             </StackPane>
-            <Button fx:id="previousButton" disable="true" mnemonicParsing="false" onAction="#handlePreviousButtonClicked" text="Previous" />
+            <Button fx:id="previousButton" disable="true" mnemonicParsing="false" onAction="#handlePreviousButtonClicked" text="%window.wizard.button.previous" />
         </items>
       </ToolBar>
    </bottom>
