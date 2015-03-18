@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import org.pidpys.model.NewKeysOptionsModel;
+import org.pidpys.model.Password;
 import org.pidpys.standalone.controller.NewKeysWizardController;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysConfirmationDialog;
+import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysPasswordDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.SelectNewKeysGeneratingFlowDialog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,6 +43,18 @@ public class NewKeysWizardView extends FxView {
         });
     }
 
+    public void showNewKeysPasswordDialog(NewKeysOptionsModel model) {
+        WizardWindow wizardWindow = modelToWizard.get(model);
+        NewKeysPasswordDialog dialog = new NewKeysPasswordDialog(localization);
+        wizardWindow.showDialog(dialog);
+        wizardWindow.onNextAction((w) -> {
+            Password password = new Password(dialog.fetchPassword());
+            Password confirmationPassword = new Password((dialog.fetchConfirmationPassword()));
+            newKeysWizardController.checkPassword(model, password, confirmationPassword);
+            return true;
+        });
+    }
+    
     public void showConfirmatinDialog(NewKeysOptionsModel model) {
         WizardWindow wizardWindow = modelToWizard.get(model);
         NewKeysConfirmationDialog dialog = new NewKeysConfirmationDialog(localization);
@@ -52,6 +66,5 @@ public class NewKeysWizardView extends FxView {
             System.out.println("Confirmed");
         });
     }
-
    
 }

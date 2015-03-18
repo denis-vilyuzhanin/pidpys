@@ -3,6 +3,7 @@ package org.pidpys.standalone.controller;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import org.pidpys.model.NewKeysOptionsModel;
+import org.pidpys.model.Password;
 import org.pidpys.model.SignatureAlgorithm;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
 
@@ -30,6 +31,11 @@ public class NewKeysWizardController {
         model.setAlgorithm(SignatureAlgorithm.RSA);
         model.setKeyLength(2048);
         model.setStore(new File(APPLICATION_USER_HOME, "key-" + System.currentTimeMillis() + ".pem"));
+        newKeysWizardView.showNewKeysPasswordDialog(model);
+    }
+
+    public void checkPassword(NewKeysOptionsModel model, Password password, Password confirmationPassword) {
         newKeysWizardView.showConfirmatinDialog(model);
     }
+    
 }
