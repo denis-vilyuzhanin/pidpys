@@ -50,9 +50,20 @@ public class NewKeysWizardView extends FxView {
         wizardWindow.onNextAction((w) -> {
             Password password = new Password(dialog.fetchPassword());
             Password confirmationPassword = new Password((dialog.fetchConfirmationPassword()));
-            newKeysWizardController.checkPassword(model, password, confirmationPassword);
-            return true;
+            return newKeysWizardController.checkPassword(model, password, confirmationPassword);
         });
+    }
+    
+    public void showMessageThatPasswordIsBlank(NewKeysOptionsModel model) {
+        WizardWindow wizardWindow = modelToWizard.get(model);
+        NewKeysPasswordDialog dialog = (NewKeysPasswordDialog) wizardWindow.getCurrentDialog();
+        dialog.showMessageThatPasswordIsBlank();
+    }
+
+    public void showMessageThatPasswordDoesNotMatchConfirmation(NewKeysOptionsModel model) {
+        WizardWindow wizardWindow = modelToWizard.get(model);
+        NewKeysPasswordDialog dialog = (NewKeysPasswordDialog) wizardWindow.getCurrentDialog();
+        dialog.showMessageThatPasswordDoesNotMatchConfirmation();
     }
     
     public void showConfirmatinDialog(NewKeysOptionsModel model) {
@@ -66,5 +77,7 @@ public class NewKeysWizardView extends FxView {
             System.out.println("Confirmed");
         });
     }
+
+    
    
 }

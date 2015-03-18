@@ -65,12 +65,17 @@ public class WizardWindow extends JavaFXWindow {
         nextStep.nextButtonLable = label;
     }
     
+    
     @Override
     public void show() {
         showNextStep();
         super.show();
     }
 
+    public JavaFXComponent getCurrentDialog() {
+        return currentStep.dialog;
+    }
+            
     @FXML
     void handleNextButtonClicked() {
         if (currentStep.nextAction.apply(this)) {

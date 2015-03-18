@@ -27,6 +27,10 @@ public class Password {
     public int getLength() {
         return this.value.length;
     }
+
+    public boolean isEmpty() {
+        return getLength() == 0;
+    }
         
     
     

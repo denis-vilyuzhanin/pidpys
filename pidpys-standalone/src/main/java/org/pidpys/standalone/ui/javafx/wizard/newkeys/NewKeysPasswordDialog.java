@@ -6,6 +6,8 @@
 package org.pidpys.standalone.ui.javafx.wizard.newkeys;
 
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import org.pidpys.standalone.ui.javafx.JavaFXComponent;
 
 /**
@@ -14,6 +16,12 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  */
 public class NewKeysPasswordDialog extends JavaFXComponent {
 
+    @FXML
+    PasswordField passwordField;
+    
+    @FXML
+    PasswordField passwordConfirmationField;
+    
     public NewKeysPasswordDialog() {
     }
 
@@ -22,10 +30,22 @@ public class NewKeysPasswordDialog extends JavaFXComponent {
     }
     
     public char[] fetchPassword() {
-        return new char[0];
+        char[] value = passwordField.getText().toCharArray();
+        passwordField.clear();
+        return value;
     }
 
     public char[] fetchConfirmationPassword() {
-        return new char[0];
+        char[] value = passwordConfirmationField.getText().toCharArray();
+        passwordConfirmationField.clear();
+        return value;
+    }
+    
+    public void showMessageThatPasswordIsBlank() {
+        
+    }
+
+    public void showMessageThatPasswordDoesNotMatchConfirmation() {
+        
     }
 }
