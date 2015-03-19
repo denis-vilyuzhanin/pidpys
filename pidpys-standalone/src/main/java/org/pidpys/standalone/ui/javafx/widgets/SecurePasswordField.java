@@ -17,24 +17,38 @@ import javafx.scene.control.PasswordField;
  */
 public class SecurePasswordField extends PasswordField {
 
+    private Logger logger = Logger.getLogger(SecurePasswordField.class.getName());
+    
     public char[] fetchPassword() {
         Content content = getContent();
         try {
-            Field field = content.getClass().getDeclaredField("characters");
-            field.setAccessible(true);
-            StringBuilder builder = (StringBuilder) field.get(content);
-            char[] chars = new char[builder.length()];
-            builder.getChars(0, builder.length(), chars, 0);
-            for(int i = 0; i < builder.length(); i++) {
-                builder.setCharAt(i, ' ');
-            }
-            return chars;
+            return fetchInSecureWay(content);
         } catch (Exception ex) {
-            return content.get().toCharArray();
+            logger.log(Level.WARNING, "Can't fetch password in secure way. So unsecure way is used.", ex);
+            return fetchInUnsecureWay(content);
         } finally {
             clear();
         }
-        
-        
+    }
+
+    private char[] fetchInSecureWay(Content content) 
+            throws IllegalArgumentException, NoSuchFieldException, SecurityException, IllegalAccessException {
+        Field field = content.getClass().getDeclaredField("characters");
+        field.setAccessible(true);
+        StringBuilder builder = (StringBuilder) field.get(content);
+        char[] chars = new char[builder.length()];
+        builder.getChars(0, builder.length(), chars, 0);
+        hidePassword(builder);
+        return chars;
+    }
+
+    private char[] fetchInUnsecureWay(Content content) {
+        return content.get().toCharArray();
+    }
+
+    private void hidePassword(StringBuilder builder) {
+        for(int i = 0; i < builder.length(); i++) {
+            builder.setCharAt(i, ' ');
+        }
     }
 }
