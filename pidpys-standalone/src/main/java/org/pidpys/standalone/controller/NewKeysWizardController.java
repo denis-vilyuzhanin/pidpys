@@ -2,6 +2,9 @@ package org.pidpys.standalone.controller;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.pidpys.model.NewKeysOptionsModel;
 import org.pidpys.model.Password;
 import org.pidpys.model.SignatureAlgorithm;
@@ -27,13 +30,19 @@ public class NewKeysWizardController {
         newKeysWizardView.show(model);
     }
 
-    public void createStandartKey(NewKeysOptionsModel model) {
+    public boolean createStandartKey(NewKeysOptionsModel model) {
         model.setAlgorithm(SignatureAlgorithm.RSA);
         model.setKeyLength(2048);
         model.setStore(new File(APPLICATION_USER_HOME, "key-" + System.currentTimeMillis() + ".pem"));
-        newKeysWizardView.showNewKeysPasswordDialog(model);
+        newKeysWizardView.showNewKeysStoreFileDialog(model);
+        return true;
     }
 
+    public boolean checkSelectedFileStore(NewKeysOptionsModel model) {
+        newKeysWizardView.showNewKeysPasswordDialog(model);
+        return true;
+    }
+    
     public boolean checkPassword(NewKeysOptionsModel model, Password password, Password confirmation) {
         boolean result = false;
         if (password.isEmpty() && confirmation.isEmpty()) {
@@ -46,5 +55,7 @@ public class NewKeysWizardController {
         }
         return result;
     }
+
+    
     
 }

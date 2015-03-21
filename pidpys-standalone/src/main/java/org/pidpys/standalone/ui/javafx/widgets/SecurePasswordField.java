@@ -31,8 +31,7 @@ public class SecurePasswordField extends PasswordField {
         }
     }
 
-    private char[] fetchInSecureWay(Content content) 
-            throws IllegalArgumentException, NoSuchFieldException, SecurityException, IllegalAccessException {
+    private char[] fetchInSecureWay(Content content) throws Exception {
         Field field = content.getClass().getDeclaredField("characters");
         field.setAccessible(true);
         StringBuilder builder = (StringBuilder) field.get(content);

@@ -9,6 +9,7 @@ import org.pidpys.standalone.controller.NewKeysWizardController;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysConfirmationDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysPasswordDialog;
+import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysStoreFileDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.SelectNewKeysGeneratingFlowDialog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,6 +41,17 @@ public class NewKeysWizardView extends FxView {
         wizardWindow.onNextAction((w) -> {
             newKeysWizardController.createStandartKey(model);
             return true;
+        });
+    }
+    
+    public void showNewKeysStoreFileDialog(NewKeysOptionsModel model) {
+        WizardWindow wizardWindow = modelToWizard.get(model);
+        NewKeysStoreFileDialog dialog = new NewKeysStoreFileDialog(localization);
+        dialog.setSelectedFile(model.getStore());
+        wizardWindow.showDialog(dialog);
+        wizardWindow.onNextAction((w) -> {
+            model.setStore(dialog.getSelectedFile());
+            return newKeysWizardController.checkSelectedFileStore(model);
         });
     }
 
