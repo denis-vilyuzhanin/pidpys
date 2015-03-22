@@ -38,10 +38,15 @@ public class JavaFXComponent {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+        execute(this::init);
     }
     
     public Parent getContainer() {
         return container;
+    }
+    
+    protected void init() {
+        
     }
     
     protected URL createFXMLUrl() throws MalformedURLException {

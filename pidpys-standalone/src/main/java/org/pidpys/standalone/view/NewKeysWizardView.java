@@ -60,9 +60,9 @@ public class NewKeysWizardView extends FxView {
         NewKeysPasswordDialog dialog = new NewKeysPasswordDialog(localization);
         wizardWindow.showDialog(dialog);
         wizardWindow.onNextAction((w) -> {
-            Password password = new Password(dialog.fetchPassword());
-            Password confirmationPassword = new Password((dialog.fetchConfirmationPassword()));
-            return newKeysWizardController.checkPassword(model, password, confirmationPassword);
+            model.setPassword(new Password(dialog.fetchPassword()));
+            model.setPasswordConfirmation(new Password((dialog.fetchConfirmationPassword())));
+            return newKeysWizardController.checkPassword(model);
         });
     }
     

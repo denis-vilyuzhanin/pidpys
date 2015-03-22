@@ -43,11 +43,11 @@ public class NewKeysWizardController {
         return true;
     }
     
-    public boolean checkPassword(NewKeysOptionsModel model, Password password, Password confirmation) {
+    public boolean checkPassword(NewKeysOptionsModel model) {
         boolean result = false;
-        if (password.isEmpty() && confirmation.isEmpty()) {
+        if (model.getPassword().isEmpty()) {
             newKeysWizardView.showMessageThatPasswordIsBlank(model);
-        } else if (!password.equals(confirmation)) {
+        } else if (!model.getPassword().equals(model.getPasswordConfirmation())) {
             newKeysWizardView.showMessageThatPasswordDoesNotMatchConfirmation(model);
         } else {
             newKeysWizardView.showConfirmatinDialog(model);

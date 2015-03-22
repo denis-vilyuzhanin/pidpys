@@ -14,7 +14,8 @@ import java.io.File;
 public class NewKeysOptionsModel {
     private SignatureAlgorithm algorithm;
     private int keyLength;
-    private String password;
+    private Password password;
+    private Password passwordConfirmirmation;
     private File store;
 
     public SignatureAlgorithm getAlgorithm() {
@@ -33,11 +34,11 @@ public class NewKeysOptionsModel {
         this.keyLength = keyLength;
     }
 
-    public String getPassword() {
+    public Password getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(Password password) {
         this.password = password;
     }
 
@@ -49,6 +50,13 @@ public class NewKeysOptionsModel {
         this.store = store;
     }
 
+    public Password getPasswordConfirmation() {
+        return passwordConfirmirmation;
+    }
+
+    public void setPasswordConfirmation(Password passwordConfirm) {
+        this.passwordConfirmirmation = passwordConfirm;
+    }
     
     
 }

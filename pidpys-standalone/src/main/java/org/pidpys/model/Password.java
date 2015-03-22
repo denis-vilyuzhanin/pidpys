@@ -31,7 +31,30 @@ public class Password {
     public boolean isEmpty() {
         return getLength() == 0;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Arrays.hashCode(this.value);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Password other = (Password) obj;
+        if (!Arrays.equals(this.value, other.value)) {
+            return false;
+        }
+        return true;
+    }
         
+    
     
     
 }
