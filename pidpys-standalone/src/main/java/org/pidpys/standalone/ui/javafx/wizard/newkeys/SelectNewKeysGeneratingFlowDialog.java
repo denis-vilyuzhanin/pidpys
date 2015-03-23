@@ -22,7 +22,7 @@ public class SelectNewKeysGeneratingFlowDialog extends JavaFXComponent {
     public SelectNewKeysGeneratingFlowDialog(ResourceBundle localization) {
         super(localization);
     }
-    
+ 
     public enum Option {
         STANDART,
         CUSTOM

@@ -1,12 +1,15 @@
 package org.pidpys.standalone.view;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import org.pidpys.model.NewKeysOptionsModel;
 import org.pidpys.model.Password;
+import org.pidpys.model.SignatureAlgorithmDescription;
 import org.pidpys.standalone.controller.NewKeysWizardController;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
+import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysAlgorithmParametersDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysConfirmationDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysPasswordDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysStoreFileDialog;
@@ -39,10 +42,33 @@ public class NewKeysWizardView extends FxView {
         SelectNewKeysGeneratingFlowDialog dialog = new SelectNewKeysGeneratingFlowDialog(localization);
         wizardWindow.showDialog(dialog);
         wizardWindow.onNextAction((w) -> {
-            newKeysWizardController.createStandartKey(model);
+            switch(dialog.getSelectedOption()) {
+                case STANDART:
+                    newKeysWizardController.createStandartKey(model);    
+                    break;
+                case CUSTOM:
+                    newKeysWizardController.specifyCustomKeyParamters(model);
+                    break;
+                default:
+                    return false;
+            }
             return true;
         });
     }
+    
+    public void showCustomKeyParametersDialog(
+        NewKeysOptionsModel model, List<SignatureAlgorithmDescription> algorithmDescriptions) {
+        NewKeysAlgorithmParametersDialog dialog = new NewKeysAlgorithmParametersDialog(localization);
+        algorithmDescriptions.forEach((algorithm) -> {
+            dialog.addAlgorithm(algorithm.getId(), algorithm.getName(), algorithm.getAvailableLength());
+        });
+        WizardWindow wizardWindow = modelToWizard.get(model);
+        wizardWindow.showDialog(dialog);
+        wizardWindow.onNextAction((w) -> {
+            return newKeysWizardController.createCustomKey(model);
+        });
+    }
+
     
     public void showNewKeysStoreFileDialog(NewKeysOptionsModel model) {
         WizardWindow wizardWindow = modelToWizard.get(model);
@@ -89,6 +115,7 @@ public class NewKeysWizardView extends FxView {
             System.out.println("Confirmed");
         });
     }
+
 
     
    

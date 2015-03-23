@@ -21,13 +21,17 @@ import javafx.scene.Parent;
 public class JavaFXComponent {
     private static final ResourceBundle EMPTY_LOCALIZATION = new EmptyResourceBundle();
     
+    
     protected final Parent container;
+    
+    private ResourceBundle localization;
     
     public JavaFXComponent() {
         this(EMPTY_LOCALIZATION);
     }
     
     public JavaFXComponent(ResourceBundle localization) {
+        this.localization = localization;
         try {
             new JFXPanel();
             URL fxml = createFXMLUrl();
@@ -65,5 +69,12 @@ public class JavaFXComponent {
         } else {
             Platform.runLater(code);
         }
+    }
+    
+    protected String localize(String string) {
+        if (localization.containsKey(string)) {
+            return localization.getString(string);
+        }
+        return string;
     }
 }
