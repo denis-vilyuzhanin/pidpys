@@ -12,17 +12,18 @@ import java.io.File;
  * @author dvily_000
  */
 public class NewKeysOptionsModel {
-    private SignatureAlgorithm algorithm;
+    private boolean customParameters;
+    private String algorithm;
     private int keyLength;
     private Password password;
     private Password passwordConfirmirmation;
     private File store;
 
-    public SignatureAlgorithm getAlgorithm() {
+    public String getAlgorithm() {
         return algorithm;
     }
 
-    public void setAlgorithm(SignatureAlgorithm algorithm) {
+    public void setAlgorithm(String algorithm) {
         this.algorithm = algorithm;
     }
 
@@ -57,6 +58,15 @@ public class NewKeysOptionsModel {
     public void setPasswordConfirmation(Password passwordConfirm) {
         this.passwordConfirmirmation = passwordConfirm;
     }
+
+    public boolean isCustomParameters() {
+        return customParameters;
+    }
+
+    public void setCustomParameters(boolean customParameters) {
+        this.customParameters = customParameters;
+    }
+    
     
     
 }

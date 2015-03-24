@@ -45,6 +45,7 @@ public class NewKeysWizardController {
     }
     
     public void specifyCustomKeyParamters(NewKeysOptionsModel model) {
+        model.setCustomParameters(true);
         fillStandartKeyParameters(model);
         newKeysWizardView.showCustomKeyParametersDialog(model, algorithm);
     }
@@ -75,8 +76,8 @@ public class NewKeysWizardController {
    
 
     private void fillStandartKeyParameters(NewKeysOptionsModel model) {
-        model.setAlgorithm(SignatureAlgorithm.RSA);
-        model.setKeyLength(2048);
+        model.setAlgorithm("RSA");
+        model.setKeyLength(1024);
         model.setStore(new File(APPLICATION_USER_HOME, "key-" + System.currentTimeMillis() + ".pem"));
     }
 

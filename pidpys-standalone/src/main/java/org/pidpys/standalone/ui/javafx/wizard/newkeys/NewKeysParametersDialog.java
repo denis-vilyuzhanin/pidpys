@@ -5,6 +5,7 @@
  */
 package org.pidpys.standalone.ui.javafx.wizard.newkeys;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -24,6 +25,8 @@ public class NewKeysParametersDialog extends JavaFXComponent {
     @FXML
     ChoiceBox<Integer> keyLengthChoiceBox;
 
+    private List<String> algorithmIds = new ArrayList<>();
+    
     public NewKeysParametersDialog() {
     }
 
@@ -58,7 +61,20 @@ public class NewKeysParametersDialog extends JavaFXComponent {
     }
     
     public void addAlgorithm(String id, String name, List<Integer> keyLength) {
+        algorithmIds.add(id);
         algorithmChoiceBox.getItems().add(new Item(id, localize(name), keyLength));
+    }
+
+    public void setSelectedKeyLength(int keyLength) {
+        keyLengthChoiceBox.getSelectionModel().select(keyLength);
+    }
+
+    public void setSelectedAlgorithm(String algorithm) {
+        int index = algorithmIds.indexOf(algorithm);
+        if (index < 0) {
+            index = 0;
+        }
+        algorithmChoiceBox.getSelectionModel().select(index);
     }
     
     
