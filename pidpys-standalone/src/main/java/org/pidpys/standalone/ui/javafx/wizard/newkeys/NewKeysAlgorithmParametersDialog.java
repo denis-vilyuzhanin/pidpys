@@ -34,9 +34,18 @@ public class NewKeysAlgorithmParametersDialog extends JavaFXComponent {
     @Override
     protected void init() {
         algorithmChoiceBox.getSelectionModel().selectedItemProperty().addListener((item) -> {
+            Integer selectedLength = keyLengthChoiceBox.getSelectionModel().getSelectedItem();
             keyLengthChoiceBox.getItems().clear();
-            //keyLengthChoiceBox.getItems().addAll(item.keyLength);
+            Item selected = algorithmChoiceBox.getSelectionModel().getSelectedItem();
+            keyLengthChoiceBox.getItems().addAll(selected.keyLength);
+            
+            int selectedIndex = selected.keyLength.indexOf(selectedLength);
+            if (selectedIndex < 0) {
+                selectedIndex = 0;
+            }
+            keyLengthChoiceBox.getSelectionModel().select(selectedIndex);
         });
+        
     }
        
     
@@ -58,7 +67,7 @@ public class NewKeysAlgorithmParametersDialog extends JavaFXComponent {
         String id;
         String displayText;
         List<Integer> keyLength;
-
+       
         public Item(String id, String displayText, List<Integer> keyLength) {
             this.id = id;
             this.displayText = displayText;

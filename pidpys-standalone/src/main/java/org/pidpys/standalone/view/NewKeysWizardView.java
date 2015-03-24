@@ -62,6 +62,7 @@ public class NewKeysWizardView extends FxView {
         algorithmDescriptions.forEach((algorithm) -> {
             dialog.addAlgorithm(algorithm.getId(), algorithm.getName(), algorithm.getAvailableLength());
         });
+        dialog.setSelected(0);
         WizardWindow wizardWindow = modelToWizard.get(model);
         wizardWindow.showDialog(dialog);
         wizardWindow.onNextAction((w) -> {
