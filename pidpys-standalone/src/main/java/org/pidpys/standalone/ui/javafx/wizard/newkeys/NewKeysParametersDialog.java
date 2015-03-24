@@ -15,7 +15,7 @@ import org.pidpys.standalone.ui.javafx.JavaFXComponent;
  *
  * @author dvily_000
  */
-public class NewKeysAlgorithmParametersDialog extends JavaFXComponent {
+public class NewKeysParametersDialog extends JavaFXComponent {
 
 
     @FXML
@@ -24,10 +24,10 @@ public class NewKeysAlgorithmParametersDialog extends JavaFXComponent {
     @FXML
     ChoiceBox<Integer> keyLengthChoiceBox;
 
-    public NewKeysAlgorithmParametersDialog() {
+    public NewKeysParametersDialog() {
     }
 
-    public NewKeysAlgorithmParametersDialog(ResourceBundle localization) {
+    public NewKeysParametersDialog(ResourceBundle localization) {
         super(localization);
     }
 

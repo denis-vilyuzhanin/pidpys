@@ -9,7 +9,7 @@ import org.pidpys.model.Password;
 import org.pidpys.model.SignatureAlgorithmDescription;
 import org.pidpys.standalone.controller.NewKeysWizardController;
 import org.pidpys.standalone.ui.javafx.wizard.WizardWindow;
-import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysAlgorithmParametersDialog;
+import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysParametersDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysConfirmationDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysPasswordDialog;
 import org.pidpys.standalone.ui.javafx.wizard.newkeys.NewKeysStoreFileDialog;
@@ -58,7 +58,7 @@ public class NewKeysWizardView extends FxView {
     
     public void showCustomKeyParametersDialog(
         NewKeysOptionsModel model, List<SignatureAlgorithmDescription> algorithmDescriptions) {
-        NewKeysAlgorithmParametersDialog dialog = new NewKeysAlgorithmParametersDialog(localization);
+        NewKeysParametersDialog dialog = new NewKeysParametersDialog(localization);
         algorithmDescriptions.forEach((algorithm) -> {
             dialog.addAlgorithm(algorithm.getId(), algorithm.getName(), algorithm.getAvailableLength());
         });
