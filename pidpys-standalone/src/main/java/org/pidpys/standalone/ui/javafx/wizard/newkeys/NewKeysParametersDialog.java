@@ -77,7 +77,13 @@ public class NewKeysParametersDialog extends JavaFXComponent {
         algorithmChoiceBox.getSelectionModel().select(index);
     }
     
+    public String getSelectedAlgorithmId() {
+        return algorithmChoiceBox.getSelectionModel().getSelectedItem().id;
+    }
     
+    public Integer getSelectedKeyLength() {
+        return keyLengthChoiceBox.getSelectionModel().getSelectedItem();
+    }
 
     private class Item {
         String id;
